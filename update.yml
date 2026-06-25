@@ -1,0 +1,40 @@
+name: Update AI cheatsheet data
+
+on:
+  schedule:
+    # Every Monday at 09:00 SGT (01:00 UTC)
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+    # Also allows manual trigger from GitHub Actions UI
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to commit ai_data.json back to repo
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 feedparser
+
+      - name: Run updater
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY:    ${{ secrets.OPENAI_API_KEY }}
+        run: python update_data.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name  "cheatsheet-bot"
+          git config user.email "cheatsheet-bot@users.noreply.github.com"
+          git add ai_data.json
+          git diff --cached --quiet || git commit -m "chore: auto-update ai_data.json $(date -u '+%Y-%m-%d')"
+          git push
