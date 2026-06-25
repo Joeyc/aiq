@@ -12,7 +12,7 @@ table and announcements section stay current automatically.
 
 | File | Purpose |
 |------|---------|
-| `AIQ.html` | AIQ — the reference site |
+| `aiq.html` | AIQ — the reference site |
 | `update_data.py` | Updater script — queries APIs, writes `ai_data.json` |
 | `ai_data.json` | Auto-generated data file, committed weekly |
 | `.github/workflows/update.yml` | GitHub Actions schedule (every Monday 09:00 SGT) |
@@ -46,12 +46,12 @@ Go to **Settings → Pages** and set:
 
 AIQ will be live at:
 ```
-https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/AI_Concepts_Cheatsheet.html
+https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/aiq.html
 ```
 
 ### 4. Trigger the first data update
 
-Go to **Actions → Update AI cheatsheet data → Run workflow**.
+Go to **Actions → Update AIQ data → Run workflow**.
 This generates a fresh `ai_data.json` and commits it.
 After that, it runs automatically every Monday.
 
