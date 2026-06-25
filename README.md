@@ -12,7 +12,7 @@ table and announcements section stay current automatically.
 
 | File | Purpose |
 |------|---------|
-| `AI_Concepts_Cheatsheet.html` | AIQ — the reference site |
+| `AIQ.html` | AIQ — the reference site |
 | `update_data.py` | Updater script — queries APIs, writes `ai_data.json` |
 | `ai_data.json` | Auto-generated data file, committed weekly |
 | `.github/workflows/update.yml` | GitHub Actions schedule (every Monday 09:00 SGT) |
